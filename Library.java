@@ -24,7 +24,8 @@ public class Library {
     // Display all available books
     public void displayAvailableBooks() {
         System.out.println("Available Books:");
-        for (Book book : books) {
+        for (int i = 0; i < books.size(); i++) {
+            Book book = books.get(i);
             if (book.isAvailable()) {
                 System.out.println("Title: " + book.getTitle() + ", Author: " + book.getAuthor());
             }
@@ -33,7 +34,8 @@ public class Library {
 
     // Borrow a book
     public void borrowBook(String title) {
-        for (Book book : books) {
+        for (int i = 0; i < books.size(); i++) {
+            Book book = books.get(i);
             if (compareTitles(book.getTitle(), title)) {
                 if (book.isAvailable()) {
                     book.setAvailable(false);
@@ -50,7 +52,8 @@ public class Library {
 
     // Return a book
     public void returnBook(String title) {
-        for (Book book : books) {
+        for (int i = 0; i < books.size(); i++) {
+            Book book = books.get(i);
             if (compareTitles(book.getTitle(), title)) {
                 if (!book.isAvailable()) {
                     book.setAvailable(true);
@@ -79,4 +82,5 @@ public class Library {
         }
         return true;
     }
+}
 }
