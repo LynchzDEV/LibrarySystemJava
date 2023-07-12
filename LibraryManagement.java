@@ -20,6 +20,7 @@ public class LibraryManagement {
             int choice;
             if (scanner.hasNextInt()) {
                 choice = scanner.nextInt();
+                System.out.println("");
                 scanner.nextLine(); // Consume the newline character
             } else {
                 System.out.println("Invalid choice. Please try again.");
