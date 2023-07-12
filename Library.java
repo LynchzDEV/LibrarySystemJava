@@ -38,7 +38,7 @@ public class Library {
     public void borrowBook(String title) {
         for (int i = 0; i < books.size(); i++) {
             Book book = books.get(i);
-            if (compareTitles(book.getTitle(), title)) {
+            if (book.getTitle().equalsIgnoreCase(title)) {
                 if (book.isAvailable()) {
                     book.setAvailable(false);
                     System.out.println("You have successfully borrowed the book: " + book.getTitle());
@@ -56,7 +56,7 @@ public class Library {
     public void returnBook(String title) {
         for (int i = 0; i < books.size(); i++) {
             Book book = books.get(i);
-            if (compareTitles(book.getTitle(), title)) {
+            if (book.getTitle().equalsIgnoreCase(title)) {
                 if (!book.isAvailable()) {
                     book.setAvailable(true);
                     System.out.println("You have successfully returned the book: " + book.getTitle());
@@ -68,20 +68,5 @@ public class Library {
             }
         }
         System.out.println("Book not found in the library.");
-    }
-
-    // Compare two titles character by character
-    private boolean compareTitles(String title1, String title2) {
-        if (title1.length() != title2.length()) {
-            return false;
-        }
-        for (int i = 0; i < title1.length(); i++) {
-            char c1 = title1.charAt(i);
-            char c2 = title2.charAt(i);
-            if (Character.toLowerCase(c1) != Character.toLowerCase(c2)) {
-                return false;
-            }
-        }
-        return true;
     }
 }
