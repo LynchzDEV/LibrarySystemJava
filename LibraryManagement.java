@@ -17,40 +17,45 @@ public class LibraryManagement {
             System.out.println("5. Exit");
             System.out.print("Enter your choice: ");
 
-            if (!scanner.hasNextInt()) {
+            int choice;
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+                scanner.nextLine(); // Consume the newline character
+            } else {
                 System.out.println("Invalid choice. Please try again.");
                 scanner.nextLine(); // Consume the invalid input
                 continue;
             }
 
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume the newline character
-
-            if (choice == 1) {
-                System.out.print("Enter book title: ");
-                String title = scanner.nextLine();
-                System.out.print("Enter book author: ");
-                String author = scanner.nextLine();
-                Book book = new Book(title, author);
-                library.addBook(book);
-            } else if (choice == 2) {
-                library.displayAvailableBooks();
-            } else if (choice == 3) {
-                System.out.print("Enter the title of the book you want to borrow: ");
-                String borrowTitle = scanner.nextLine();
-                library.borrowBook(borrowTitle);
-            } else if (choice == 4) {
-                System.out.print("Enter the title of the book you want to return: ");
-                String returnTitle = scanner.nextLine();
-                library.returnBook(returnTitle);
-            } else if (choice == 5) {
-                System.out.println("Exiting... Thank you!");
-                break;
-            } else {
-                System.out.println("Invalid choice. Please try again.");
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter book title: ");
+                    String title = scanner.nextLine();
+                    System.out.print("Enter book author: ");
+                    String author = scanner.nextLine();
+                    Book book = new Book(title, author);
+                    library.addBook(book);
+                    break;
+                case 2:
+                    library.displayAvailableBooks();
+                    break;
+                case 3:
+                    System.out.print("Enter the title of the book you want to borrow: ");
+                    String borrowTitle = scanner.nextLine();
+                    library.borrowBook(borrowTitle);
+                    break;
+                case 4:
+                    System.out.print("Enter the title of the book you want to return: ");
+                    String returnTitle = scanner.nextLine();
+                    library.returnBook(returnTitle);
+                    break;
+                case 5:
+                    System.out.println("Exiting... Thank you!");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
             }
         }
-
-        scanner.close();
     }
 }
