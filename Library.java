@@ -26,7 +26,7 @@ public class Library {
         for (int i = 0; i < numBooks; i++) {
             Book book = books[i];
             if (book.isAvailable()) {
-                System.out.println(book);
+                System.out.println("Book title: " + book.getTitle() + "  Book author: " + book.getAuthor());
             }
         }
     }
