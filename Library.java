@@ -59,7 +59,8 @@ public class Library {
     }
 
     private Book findBookByTitle(String title) {
-        for (Book book : books) {
+        for (int i = 0; i < books.size(); i++) {
+            Book book = books.get(i);
             if (book.getTitle().equalsIgnoreCase(title)) {
                 return book;
             }
