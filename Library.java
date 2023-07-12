@@ -1,20 +1,20 @@
 package librarymanagement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Library {
-    private List<Book> books;
+    private Book[] books;
     private int capacity;
+    private int numBooks;
 
     public Library(int capacity) {
-        books = new ArrayList<>();
+        books = new Book[capacity];
         this.capacity = capacity;
+        numBooks = 0;
     }
 
     public void addBook(Book book) {
-        if (books.size() < capacity) {
-            books.add(book);
+        if (numBooks < capacity) {
+            books[numBooks] = book;
+            numBooks++;
             System.out.println("Book added to the library.");
         } else {
             System.out.println("Library is full. Cannot add more books.");
@@ -23,7 +23,8 @@ public class Library {
 
     public void displayAvailableBooks() {
         System.out.println("Available Books:");
-        for (Book book : books) {
+        for (int i = 0; i < numBooks; i++) {
+            Book book = books[i];
             if (book.isAvailable()) {
                 System.out.println(book);
             }
@@ -59,8 +60,8 @@ public class Library {
     }
 
     private Book findBookByTitle(String title) {
-        for (int i = 0; i < books.size(); i++) {
-            Book book = books.get(i);
+        for (int i = 0; i < numBooks; i++) {
+            Book book = books[i];
             if (book.getTitle().equalsIgnoreCase(title)) {
                 return book;
             }
